@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\..\\GitHub\\nano-20-console"
+		},
+		{
+			"name": "200523-122740-pro16MHzatmega328",
+			"path": "..\\..\\200523-122740-pro16MHzatmega328"
+		},
+		{
+			"name": "SD-configure-release8",
+			"path": "..\\..\\..\\..\\GitHub\\SD-configure-release8"
+		},
+		{
+			"name": "ESP32_32_display",
+			"path": ".."
+		}
+	],
+	"settings": {}
+}

@@ -92,15 +92,7 @@ byte k;
 
 uint8_t Red, Green, Blue, Single;
 
-  
-           
-
-void setup()
-{
-    Serial.begin(115200);
-    Serial2.begin(9600,SERIAL_8N1,RX,TX);
-    Serial.println("Start");
-
+void displayTest(){
     tft.init();
     tft.setRotation(0);
     tft.fillScreen(TFT_BLACK);
@@ -124,7 +116,9 @@ void setup()
     delay(300);
     tft.fillScreen(TFT_GREEN);
     delay(300);
+}
 
+void displayStart(){
     tft.fillScreen(TFT_BLACK);
     tft.setTextColor(0xF800);
     tft.drawString("RED: ", 1, 1);
@@ -137,18 +131,19 @@ void setup()
     tft.setTextDatum(TL_DATUM);
 }
 
-
-void loop()
-{
+void Radio(){
  if (Serial2.available() && Serial2.read() == 0xAA && Serial2.read() == 0xBB)
   Serial2.readStringUntil('\n').toCharArray(data, sizeof(data));
-  LOG_DEBUG_VARIABLE((int)data[3])
   Red = data[0];
   Green = data[1];
   Blue = data[2];
   Single = data[3];
-  
-     tft.setTextColor(0xF800,0x0000);
+}
+
+
+
+void RGBprint_display(){
+    tft.setTextColor(0xF800,0x0000);
     tft.drawString(String(Red)+"   ", 50, 1);
     tft.setTextColor(0x07E0,0x0000);
     tft.drawString(String(Green)+"   ", 75, 30);
@@ -156,5 +151,24 @@ void loop()
     tft.drawString(String(Blue)+"   ", 60, 70);
     tft.setTextColor(0xFFFF,0x0000);
     tft.drawString(String(Single)+"   ", 85, 110);
+    tft.fillRect(0, 200, 135, 40, 0xF1FF);
     
+}
+
+
+           
+
+void setup()
+{
+    Serial.begin(115200);
+    Serial2.begin(9600,SERIAL_8N1,RX,TX);
+    Serial.println("Start");
+    displayTest();
+    displayStart();
+}
+
+
+void loop()
+{ Radio();
+  RGBprint_display();
 }

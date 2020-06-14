@@ -1,7 +1,7 @@
 #include "leds_stat.h"
 
 const int LED_COUNT = 300;
-const int DATA_PIN = 12;
+const int DATA_PIN = 27;
 const int CHANNEL = 0;
 SmartLed leds( LED_WS2812, LED_COUNT, DATA_PIN, CHANNEL, DoubleBuffer );
 

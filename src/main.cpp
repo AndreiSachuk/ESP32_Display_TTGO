@@ -7,6 +7,8 @@
 #include "esp_adc_cal.h"
 #include "bmp.h"
 #include <SoftwareSerial.h>
+#include "leds_stat.h"
+#include <analogWrite.h>
 
 //автотаймер через какое время, что выполнять EXEC_TIMER_SET(Tafter,Tcode)
 #define COMBINE1(X,Y) X##Y  // helper macro
@@ -59,6 +61,7 @@ uint32_t hexColorToInt(String s);
 
 #define RX 22                        
 #define TX 17 
+#define LED_PIN 26
 
 
 char data[7]; 
@@ -142,6 +145,8 @@ void Radio(){
 
 
 
+
+
 void RGBprint_display(){
     tft.setTextColor(0xF800,0x0000);
     tft.drawString(String(Red)+"   ", 50, 1);
@@ -171,4 +176,6 @@ void setup()
 void loop()
 { Radio();
   RGBprint_display();
+  showRgb(Red,Green,Blue);
+  analogWrite(LED_PIN, Single);
 }
